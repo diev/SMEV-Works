@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<QueryResult
+    xmlns="urn://x-artefacts-smev-gov-ru/services/service-adapter/types"
+    xmlns:ns2="urn://x-artefacts-smev-gov-ru/services/service-adapter/types/faults">
+
+    <smevMetadata>
+        <MessageId>964c3088-f3bc-11ed-b9e8-001a4a166087</MessageId>
+        <TransactionCode>9648d50d-f3bc-11ed-9883-fa163ee4b849|00000000000000000000|WGMVTQwjEqPhPinukO6rf5gUiRcnCfES+APTZ4QoZs4euwMnDkwWuRUzVC7VdQCfZaSU9vOUsSp/vg8ZxU0stk02gsgqn9cNwU4EP4rsnCixvGsHpsPc+YqIfkRFbR13HVdlNf5aAcoqR+s+r2zhVHFYBnXdRqJKRuZZepTS/XcAygmdk7MC2h3VsSbAzH2dtmSC50PDXJ48m6icRZVXeTjFJzuyAmWHM/mBsXRy1hTo39xCgnm6r9EUnH05XDVKuIZFVVWm1VUAvO+Ox4GcwuARqZH6+V3vil029Hm0MqLIWlLA2DnHSCOooJOOOVflfI5cvRAG+aSzJX+ItclJMw==</TransactionCode>
+        <Sender>emuOLD</Sender>
+        <Recipient>123456</Recipient>
+        <SendingDate>2023-05-16T10:38:02.041+03:00</SendingDate>
+    </smevMetadata>
+
+    <Message xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="RequestMessageType">
+        <RequestMetadata>
+            <clientId>b47023ba-0f99-46b6-9fa8-d482b8e12fd2</clientId>
+            <linkedGroupIdentity>
+                <refClientId>b47023ba-0f99-46b6-9fa8-d482b8e12fd2</refClientId>
+                <refGroupId>9648d50d-f3bc-11ed-9883-fa163ee4b849</refGroupId>
+            </linkedGroupIdentity>
+            <testMessage>false</testMessage>
+            <TransactionCode>9648d50d-f3bc-11ed-9883-fa163ee4b849|00000000000000000000|WGMVTQwjEqPhPinukO6rf5gUiRcnCfES+APTZ4QoZs4euwMnDkwWuRUzVC7VdQCfZaSU9vOUsSp/vg8ZxU0stk02gsgqn9cNwU4EP4rsnCixvGsHpsPc+YqIfkRFbR13HVdlNf5aAcoqR+s+r2zhVHFYBnXdRqJKRuZZepTS/XcAygmdk7MC2h3VsSbAzH2dtmSC50PDXJ48m6icRZVXeTjFJzuyAmWHM/mBsXRy1hTo39xCgnm6r9EUnH05XDVKuIZFVVWm1VUAvO+Ox4GcwuARqZH6+V3vil029Hm0MqLIWlLA2DnHSCOooJOOOVflfI5cvRAG+aSzJX+ItclJMw==</TransactionCode>
+        </RequestMetadata>
+
+        <RequestContent>
+            <content>
+                <MessagePrimaryContent>
+
+                    <tns:UVSMERTFLRequest
+                        xmlns:tns="urn://x-artefacts-fns-uvsmertfl/root/313-19/4.0.1"
+                        xmlns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.2"
+                        xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"
+                        xmlns:ns0="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.2"
+                        xmlns:ns1="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.2"
+                        xmlns:ns2="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.2"
+                        xmlns:ns3="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/faults/1.2"
+                        xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+
+                        ДатаЗапис="2022-08-02"
+                        ДатаРожд="1960-01-01"
+                        ДатаСмерт="2022-08-01"
+                        ДатаСнят="2022-08-01"
+                        ИННФЛ="100000000000"
+                        ИдЗапрос="00000000-0000-0000-0000-000000000001"
+                        КодЗАГС="6800"
+                        МнемонПост="1234560000005"
+                        НаимЗАГС="Гдетотакой отдел ЗАГС"
+                        НомерЗапис="000006"
+                        ПрДатаРожд="1"
+                        ПрДатаСмерт="1">
+
+                        <tns:СведБанк БИК="000000000" ИННЮЛ="1000000000" КППБанк="100000000" НаимБанк="Наименование банка" РегНом="0001">
+                            <tns:СвОткрСчет ВалСч="643" ДатаОткрСч="2021-08-01" КодСчет="0001" НомСчет="00000000000000000001" НомФил="0001"/>
+                            <tns:СвОткрСчет ВалСч="643" ДатаОткрСч="2021-08-02" КодСчет="0001" НомСчет="00000000000000000002" НомФил="0001"/>
+                            <tns:СвОткрСчет ВалСч="643" ДатаОткрСч="2021-08-03" КодСчет="0001" НомСчет="00000000000000000003" НомФил="0001"/>
+                            <tns:СвОткрСчет ВалСч="643" ДатаОткрСч="2021-08-04" КодСчет="0001" НомСчет="00000000000000000004" НомФил="0001"/>
+                        </tns:СведБанк>
+
+                        <tns:ФИО>
+                            <fnst:Фамилия xmlns:fnst="urn://x-artefacts-fns-uvsmertfl/types/313-19/4.0.1">Тестовый</fnst:Фамилия>
+                            <fnst:Имя xmlns:fnst="urn://x-artefacts-fns-uvsmertfl/types/313-19/4.0.1">Тест</fnst:Имя>
+                            <fnst:Отчество xmlns:fnst="urn://x-artefacts-fns-uvsmertfl/types/313-19/4.0.1">Тестович</fnst:Отчество>
+                        </tns:ФИО>
+
+                        <tns:УдЛичнФЛ ДатаДок="2005-12-01" КодВидДок="01" СерНомДок="0001 000002"/>
+                    </tns:UVSMERTFLRequest>
+
+                </MessagePrimaryContent>
+            </content>
+        </RequestContent>
+
+    </Message>
+</QueryResult>
