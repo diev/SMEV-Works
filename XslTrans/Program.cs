@@ -20,6 +20,7 @@ Source https://github.com/diev/
 using System;
 using System.IO;
 using System.Net;
+using System.Text;
 using System.Xml;
 using System.Xml.Xsl;
 
@@ -52,34 +53,62 @@ namespace XslTrans
                 return 2;
             }
 
-            // Create the XslCompiledTransform object.
-            XslCompiledTransform xslt = new XslCompiledTransform();
-
-            // Create the XsltSettings object with script enabled.
-            XsltSettings settings = new XsltSettings(false, true);
-
-            // Create a resolver and set the default credentials to use.
-            XmlUrlResolver resolver = new XmlUrlResolver
+            try
             {
-                Credentials = CredentialCache.DefaultCredentials
-            };
+                // Create a parameter which fills client_id.
+                XsltArgumentList xslArgs = new XsltArgumentList();
+                string guid = Guid.NewGuid().ToString();
+                xslArgs.AddParam(nameof(guid), string.Empty, guid);
 
-            // Load the style sheet.
-            xslt.Load(fXsl, settings, resolver);
+                using (XmlReader src = XmlReader.Create(fXml))
+                {
+                    // Create the XslCompiledTransform object.
+                    XslCompiledTransform xslt = new XslCompiledTransform();
 
-            string ext = GetExtension(xslt.OutputSettings.OutputMethod);
-            string fOut = args.Length == 3
-                ? GetResultName(args[2], fXml, ext)
-                : Path.ChangeExtension(fXml, ext);
+                    // Create the XsltSettings object with script enabled.
+                    XsltSettings settings = new XsltSettings(false, true);
 
-            // Execute the transform and output the results to a file.
-            xslt.Transform(fXml, fOut);
+                    // Create a resolver and set the default credentials to use.
+                    XmlUrlResolver resolver = new XmlUrlResolver
+                    {
+                        Credentials = CredentialCache.DefaultCredentials
+                    };
 
-            Console.WriteLine($"Done to '{fOut}'.");
-            return 0;
+                    // Load the style sheet.
+                    xslt.Load(fXsl, settings, resolver);
+
+                    // Create the output XmlSettings.
+                    XmlWriterSettings writerSettings = xslt.OutputSettings.Clone();
+                    writerSettings.IndentChars = "  ";
+                    // Remove the BOM!
+                    writerSettings.Encoding = new UTF8Encoding(false);
+
+                    // Create the output file name.
+                    string ext = GetExtension(xslt.OutputSettings.OutputMethod);
+                    string fOut = args.Length == 3
+                        ? GetResultName(args[2], fXml, ext, guid)
+                        : Path.ChangeExtension(fXml, ext);
+
+                    // Execute the transform and output the results to a file.
+                    using (XmlWriter result = XmlWriter.Create(fOut, writerSettings))
+                    {
+                        xslt.Transform(src, xslArgs, result, resolver);
+                        result.Close();
+                    }
+
+                    Console.WriteLine($"Done to '{fOut}'.");
+                }
+
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return 3;
+            }
         }
 
-        private static string GetResultName(string arg, string fXml, string ext)
+        private static string GetResultName(string arg, string fXml, string ext, string guid)
         {
             string result = Path.GetFullPath(arg);
 
@@ -97,6 +126,17 @@ namespace XslTrans
             }
 
             string path = Path.GetDirectoryName(result);
+            string name = Path.GetFileNameWithoutExtension(result);
+
+            if (name.Equals("guid", StringComparison.OrdinalIgnoreCase))
+            {
+                result = Path.Combine(path, guid + Path.GetExtension(result));
+            }
+            else if (name.Equals("{guid}", StringComparison.OrdinalIgnoreCase))
+            {
+                result = Path.Combine(path, '{' + guid + '}' + Path.GetExtension(result));
+            }
+
             Directory.CreateDirectory(path);
             return result;
         }
@@ -125,10 +165,14 @@ namespace XslTrans
 Usage on 'xsl:output method' in XSLT:
 
  - 'xml' : XslTrans Request.xml Xml.xslt [Dir|Request.response.xml]
+ - 'xml' : XslTrans Request.xml Xml.xslt [Dir|guid.xml]
+ - 'xml' : XslTrans Request.xml Xml.xslt [Dir|{guid}.xml]
  - 'html': XslTrans Request.xml Htm.xslt [Dir|Request.html]
  - 'text': XslTrans Request.xml Txt.xslt [Dir|Request.txt]
 
-If 'Dir', this must exist or use 'Dir\' to create this.";
+If 'Dir', this must exist or use 'Dir\' to create this.
+If 'guid.xml, this will substituted by Guid of 'client_id'.
+If '{guid}.xml, this will substituted by {Guid} of 'client_id'.";
 
             Console.WriteLine(App.Version);
             Console.WriteLine(App.Description);
