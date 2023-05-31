@@ -9,7 +9,7 @@
     xmlns:x="urn://x-artefacts-smev-gov-ru/services/service-adapter/types"
     exclude-result-prefixes="xsl tns fnst x">
 
-    <xsl:output method="html" omit-xml-declaration="yes" standalone="yes" encoding="utf-8" doctype-public="html" indent="yes"/>
+    <xsl:output method="html" doctype-public="html" indent="yes"/>
 
     <xsl:template name="formatDate"><!-- 2023-05-16 -->
         <xsl:param name="yyyy-mm-dd"/>
@@ -47,24 +47,24 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <title>313-19</title>
                 <style type="text/css">
-                    body { margin: 10pt; font-size:11px; }
-                    h1 { margin: 10pt; font-weight: bold; font-size: 14pt; text-align: center; }
-                    h2 { background-color: #eee; font-weight: bold; font-size: 12pt; border-top: #000 1pt solid; padding: 2pt 2pt 2pt 10pt; }
-                    .rectangle { border: #000 1pt solid; margin-left: auto; margin-right: 0; padding: 2pt; width: 60%; }
-                    .items th { font-weight: bold; text-align: right; }
-                    .items td { padding-left: 10pt; }
-                    .accounts th { font-weight: normal; padding-left: 10pt; text-align: left; text-decoration: underline; }
-                    .accounts td { padding-left: 10pt; }
+                    <xsl:text>body{margin:10pt;font-size:11px;}</xsl:text>
+                    <xsl:text>h1{margin:10pt;font-weight:bold;font-size:14pt;text-align:center;}</xsl:text>
+                    <xsl:text>h2{background-color:#eee;font-weight:bold;font-size:12pt;border-top:#000 1pt solid;padding:2pt 2pt 2pt 10pt;}</xsl:text>
+                    <xsl:text>.rectangle{border:#000 1pt solid;margin-left:auto;margin-right:0;padding:2pt;width:60%;}</xsl:text>
+                    <xsl:text>.items th{font-weight:bold;text-align:right;}</xsl:text>
+                    <xsl:text>.items td{padding-left:10pt;}</xsl:text>
+                    <xsl:text>.accounts th{font-weight:normal;padding-left:10pt;text-align:left;text-decoration:underline;}</xsl:text>
+                    <xsl:text>.accounts td{padding-left:10pt;}</xsl:text>
                 </style>
                 <style type="text/css" media="print">
-                    body { margin: 0; }
+                    <xsl:text>body{margin:0;}</xsl:text>
                 </style>
             </head>
           
             <body>
-                <h1>СВЕДЕНИЯ В КРЕДИТНЫЕ ОРГАНИЗАЦИИ О СНЯТИИ С УЧЕТА В<br/>
-                    НАЛОГОВОМ ОРГАНЕ ФИЗИЧЕСКОГО ЛИЦА - ВЛАДЕЛЬЦА СЧЕТА<br/>
-                    НА ОСНОВАНИИ СВЕДЕНИЙ О СМЕРТИ</h1>
+                <h1><xsl:text>СВЕДЕНИЯ В КРЕДИТНЫЕ ОРГАНИЗАЦИИ О СНЯТИИ С УЧЕТА В</xsl:text><br/>
+                    <xsl:text>НАЛОГОВОМ ОРГАНЕ ФИЗИЧЕСКОГО ЛИЦА - ВЛАДЕЛЬЦА СЧЕТА</xsl:text><br/>
+                    <xsl:text>НА ОСНОВАНИИ СВЕДЕНИЙ О СМЕРТИ</xsl:text></h1>
 
                 <div class="rectangle">
                     <table class="items" width="100%">
@@ -139,7 +139,7 @@
                                     <xsl:call-template name="formatDate">
                                         <xsl:with-param name="yyyy-mm-dd" select="//tns:UVSMERTFLRequest/@ДатаРожд"/>
                                     </xsl:call-template>
-                                    Пр. <xsl:value-of select="//tns:UVSMERTFLRequest/@ПрДатаРожд"/>
+                                    <xsl:text>Пр. </xsl:text><xsl:value-of select="//tns:UVSMERTFLRequest/@ПрДатаРожд"/>
                                 </td>
                                 <th></th>
                                 <td></td>
@@ -152,7 +152,7 @@
                                     <xsl:call-template name="formatDate">
                                         <xsl:with-param name="yyyy-mm-dd" select="//tns:UVSMERTFLRequest/@ДатаСмерт"/>
                                     </xsl:call-template>
-                                    Пр. <xsl:value-of select="//tns:UVSMERTFLRequest/@ПрДатаСмерт"/>
+                                    <xsl:text>Пр. </xsl:text><xsl:value-of select="//tns:UVSMERTFLRequest/@ПрДатаСмерт"/>
                                 </td>
                                 <th>Дата записи</th>
                                 <td>

@@ -9,7 +9,7 @@
     xmlns:x="urn://x-artefacts-smev-gov-ru/services/service-adapter/types"
     exclude-result-prefixes="xsl tns fnst x">
 
-    <xsl:output method="text" omit-xml-declaration="yes" standalone="yes" encoding="windows-1251" indent="yes"/>
+    <xsl:output method="text" encoding="windows-1251"/>
 
     <xsl:template name="formatDate"><!-- 2023-05-16 -->
         <xsl:param name="yyyy-mm-dd"/>

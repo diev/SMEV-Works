@@ -5,6 +5,8 @@ rem call $(SolutionDir)PostBuild.bat
 setlocal
 set pack="C:\Program Files\7-Zip\7z.exe" a
 set outdir=bin\Release
+rem echo %date%
+rem 31.05.2023
 set ymd=%date:~-4%-%date:~3,2%-%date:~0,2%
 set home=%~dp0
 

@@ -8,7 +8,7 @@
   xmlns:x="urn://x-artefacts-smev-gov-ru/services/service-adapter/types"
   exclude-result-prefixes="xsl x">
 
-  <xsl:output method="xml" omit-xml-declaration="no" standalone="no" encoding="UTF-8" indent="yes"/>
+  <xsl:output method="xml" omit-xml-declaration="no" indent="yes"/>
 
   <xsl:param name="guid"/><!-- XslArgumentList() used -->
     

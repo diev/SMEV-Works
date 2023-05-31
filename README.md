@@ -55,9 +55,9 @@ printable HTML/TEXT.
 
 Полезности в шаблонах XSLT:
 
+- Отладка файлов XML и HTML - переключить в `indent="yes"`.
+выдавать XML/HTML в одну строку - переключить в `indent="no"`.
 - Отладка таблиц в HTML - добавить `border="1"` в тэг `table`;
-- Отладка файлов XML - переключить в `indent="yes"`.
-выдавать XML в одну строку - переключить в `indent="no"`.
 
 ## Examples
 

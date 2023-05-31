@@ -19,7 +19,7 @@
     ]]>
   </msxsl:script>
 
-  <xsl:output method="xml" omit-xml-declaration="no" standalone="no" encoding="UTF-8" indent="yes"/>
+  <xsl:output method="xml" omit-xml-declaration="no" indent="yes"/>
 
   <xsl:variable name="ourIS"><xsl:value-of select="//x:Recipient/text()"/></xsl:variable>
   <xsl:variable name="reqId"><xsl:value-of select="//x:clientId/text()"/></xsl:variable>

@@ -77,18 +77,22 @@ namespace XslTrans
                     // Load the style sheet.
                     xslt.Load(fXsl, settings, resolver);
 
-                    // Create the output XmlSettings.
-                    XmlWriterSettings writerSettings = xslt.OutputSettings.Clone();
-                    writerSettings.IndentChars = "  ";
-                    //writerSettings.Indent = true; //use it in XSLT
-                    // Remove the BOM!
-                    writerSettings.Encoding = new UTF8Encoding(false);
-
                     // Create the output file name.
                     string ext = GetExtension(xslt.OutputSettings.OutputMethod);
                     string fOut = args.Length == 3
                         ? GetResultName(args[2], fXml, ext, guid)
                         : Path.ChangeExtension(fXml, ext);
+
+                    // Create the output XmlSettings.
+                    XmlWriterSettings writerSettings = xslt.OutputSettings.Clone();
+                    writerSettings.IndentChars = "  ";
+                    //writerSettings.Indent = true; //use it in XSLT
+
+                    if (xslt.OutputSettings.Encoding == Encoding.UTF8)
+                    {
+                        // Remove the BOM!
+                        writerSettings.Encoding = new UTF8Encoding(false);
+                    }
 
                     // Execute the transform and output the results to a file.
                     using (XmlWriter result = XmlWriter.Create(fOut, writerSettings))
