@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!-- 313-19 Сведения о снятии ФЛ с учета в налоговых органах в связи со смертью, представляемых в банки, сообщившие информацию о счетах ФЛ -->
+<!-- Редакция от 2023-05-31 -->
 
 <xsl:transform version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:tns="urn://x-artefacts-fns-uvsmertfl/root/313-19/4.0.1"
   xmlns:x="urn://x-artefacts-smev-gov-ru/services/service-adapter/types"
-  xmlns:msxsl="urn:schemas-microsoft-com:xslt"
   exclude-result-prefixes="xsl x">
 
-  <xsl:output method="xml" encoding="UTF-8"/>
+  <xsl:output method="xml" omit-xml-declaration="no" standalone="no" encoding="UTF-8" indent="yes"/>
 
   <xsl:param name="guid"/><!-- XslArgumentList() used -->
     

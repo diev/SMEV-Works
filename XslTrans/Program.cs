@@ -80,6 +80,7 @@ namespace XslTrans
                     // Create the output XmlSettings.
                     XmlWriterSettings writerSettings = xslt.OutputSettings.Clone();
                     writerSettings.IndentChars = "  ";
+                    //writerSettings.Indent = true; //use it in XSLT
                     // Remove the BOM!
                     writerSettings.Encoding = new UTF8Encoding(false);
 

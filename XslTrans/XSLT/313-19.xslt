@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!-- 313-19 Сведения о снятии ФЛ с учета в налоговых органах в связи со смертью, представляемых в банки, сообщившие информацию о счетах ФЛ -->
+<!-- Редакция от 2023-05-31 -->
 
 <xsl:transform version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -18,7 +19,7 @@
     ]]>
   </msxsl:script>
 
-  <xsl:output method="xml" encoding="UTF-8"/>
+  <xsl:output method="xml" omit-xml-declaration="no" standalone="no" encoding="UTF-8" indent="yes"/>
 
   <xsl:variable name="ourIS"><xsl:value-of select="//x:Recipient/text()"/></xsl:variable>
   <xsl:variable name="reqId"><xsl:value-of select="//x:clientId/text()"/></xsl:variable>

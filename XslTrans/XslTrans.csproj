@@ -64,6 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="samples\adapter_in.cmd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="samples\samples.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -72,10 +75,7 @@
     <Content Include="samples\in\SampleRequest.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="samples\out\12c32508-e3d1-4dbd-9929-450ec105b498.xml" />
     <Content Include="samples\out\SampleRequest.response.xml" />
-    <Content Include="samples\out\SampleRequest.responseArgs.xml" />
-    <Content Include="samples\out\{36a96404-df69-43bf-81d5-47a2c860832c}.xml" />
     <Content Include="samples\save\SampleRequest.html" />
     <Content Include="samples\save\SampleRequest.txt" />
     <Content Include="XSLT\313-19.xslt">

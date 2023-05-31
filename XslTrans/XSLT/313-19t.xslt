@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!-- 313-19 Сведения о снятии ФЛ с учета в налоговых органах в связи со смертью, представляемых в банки, сообщившие информацию о счетах ФЛ -->
+<!-- Редакция от 2023-05-31 -->
 
 <xsl:stylesheet version="1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -8,7 +9,7 @@
     xmlns:x="urn://x-artefacts-smev-gov-ru/services/service-adapter/types"
     exclude-result-prefixes="xsl tns fnst x">
 
-    <xsl:output method="text" omit-xml-declaration="yes" indent="yes" encoding="windows-1251"/>
+    <xsl:output method="text" omit-xml-declaration="yes" standalone="yes" encoding="windows-1251" indent="yes"/>
 
     <xsl:template name="formatDate"><!-- 2023-05-16 -->
         <xsl:param name="yyyy-mm-dd"/>
@@ -50,25 +51,28 @@
 
         Клиент ИНН <xsl:value-of select="//tns:UVSMERTFLRequest/@ИННФЛ"/>
 
-        Фамилия:  <xsl:value-of select="//fnst:Фамилия/text()"/>
-        Имя:      <xsl:value-of select="//fnst:Имя/text()"/>
-        Отчество: <xsl:value-of select="//fnst:Отчество/text()"/>
+        Фамилия:       <xsl:value-of select="//fnst:Фамилия/text()"/>
+        Имя:           <xsl:value-of select="//fnst:Имя/text()"/>
+        Отчество:      <xsl:value-of select="//fnst:Отчество/text()"/>
 
         Акты гражданского состояния
 
         Дата рождения: <xsl:call-template name="formatDate">
             <xsl:with-param name="yyyy-mm-dd" select="//tns:UVSMERTFLRequest/@ДатаРожд"/>
-        </xsl:call-template>
+        </xsl:call-template>  Пр. <xsl:value-of select="//tns:UVSMERTFLRequest/@ПрДатаРожд"/>
         Дата смерти:   <xsl:call-template name="formatDate">
             <xsl:with-param name="yyyy-mm-dd" select="//tns:UVSMERTFLRequest/@ДатаСмерт"/>
-        </xsl:call-template>
-        Номер записи:  <xsl:value-of select="//tns:UVSMERTFLRequest/@НомерЗапис"/>
+        </xsl:call-template>  Пр. <xsl:value-of select="//tns:UVSMERTFLRequest/@ПрДатаСмерт"/>
+        
         Дата записи:   <xsl:call-template name="formatDate">
             <xsl:with-param name="yyyy-mm-dd" select="//tns:UVSMERTFLRequest/@ДатаЗапис"/>
+        </xsl:call-template>  Номер записи: <xsl:value-of select="//tns:UVSMERTFLRequest/@НомерЗапис"/>
+        Дата снятия:   <xsl:call-template name="formatDate">
+            <xsl:with-param name="yyyy-mm-dd" select="//tns:UVSMERTFLRequest/@ДатаСнят"/>
         </xsl:call-template>
 
         Наименование ЗАГС: <xsl:value-of select="//tns:UVSMERTFLRequest/@НаимЗАГС"/>
-        Код ЗАГС:          <xsl:value-of select="//tns:UVSMERTFLRequest/@КодЗАГС"/>
+        Код ЗАГС:      <xsl:value-of select="//tns:UVSMERTFLRequest/@КодЗАГС"/>
 
         Удостоверение личности
 

@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!-- 313-19 Сведения о снятии ФЛ с учета в налоговых органах в связи со смертью, представляемых в банки, сообщившие информацию о счетах ФЛ -->
+<!-- Редакция от 2023-05-31 -->
 
 <xsl:stylesheet version="1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -8,7 +9,7 @@
     xmlns:x="urn://x-artefacts-smev-gov-ru/services/service-adapter/types"
     exclude-result-prefixes="xsl tns fnst x">
 
-    <xsl:output method="html" omit-xml-declaration="yes" doctype-public="html" indent="yes" encoding="utf-8"/>
+    <xsl:output method="html" omit-xml-declaration="yes" standalone="yes" encoding="utf-8" doctype-public="html" indent="yes"/>
 
     <xsl:template name="formatDate"><!-- 2023-05-16 -->
         <xsl:param name="yyyy-mm-dd"/>
@@ -126,11 +127,11 @@
 
                     <table class="items" width="100%">
                         <col width="20%"/>
-                        <col width="15%"/>
                         <col width="20%"/>
+                        <col width="15%"/>
                         <col width="10%"/>
-                        <col width="20%"/>
                         <col width="15%"/>
+                        <col width="20%"/>
                         <tbody>
                             <tr>
                                 <th>Дата рождения</th>
@@ -138,7 +139,12 @@
                                     <xsl:call-template name="formatDate">
                                         <xsl:with-param name="yyyy-mm-dd" select="//tns:UVSMERTFLRequest/@ДатаРожд"/>
                                     </xsl:call-template>
+                                    Пр. <xsl:value-of select="//tns:UVSMERTFLRequest/@ПрДатаРожд"/>
                                 </td>
+                                <th></th>
+                                <td></td>
+                                <th></th>
+                                <td></td>
                             </tr>
                             <tr>
                                 <th>Дата смерти</th>
@@ -146,10 +152,7 @@
                                     <xsl:call-template name="formatDate">
                                         <xsl:with-param name="yyyy-mm-dd" select="//tns:UVSMERTFLRequest/@ДатаСмерт"/>
                                     </xsl:call-template>
-                                </td>
-                                <th>Номер записи</th>
-                                <td>
-                                    <xsl:value-of select="//tns:UVSMERTFLRequest/@НомерЗапис"/>
+                                    Пр. <xsl:value-of select="//tns:UVSMERTFLRequest/@ПрДатаСмерт"/>
                                 </td>
                                 <th>Дата записи</th>
                                 <td>
@@ -157,18 +160,17 @@
                                         <xsl:with-param name="yyyy-mm-dd" select="//tns:UVSMERTFLRequest/@ДатаЗапис"/>
                                     </xsl:call-template>
                                 </td>
+                                <th>Номер записи</th>
+                                <td>
+                                    <xsl:value-of select="//tns:UVSMERTFLRequest/@НомерЗапис"/>
+                                </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <br/>
-
-                    <table class="items" width="100%">
-                        <col width="20%"/>
-                        <col width="80%"/>
-                        <tbody>
+                            <tr>
+                                <td colspan="6"><br/></td>
+                            </tr>
                             <tr>
                                 <th>Наименование ЗАГС</th>
-                                <td>
+                                <td colspan="5">
                                     <xsl:value-of select="//tns:UVSMERTFLRequest/@НаимЗАГС"/>
                                 </td>
                             </tr>
@@ -177,6 +179,14 @@
                                 <td>
                                     <xsl:value-of select="//tns:UVSMERTFLRequest/@КодЗАГС"/>
                                 </td>
+                                <th>Дата снятия</th>
+                                <td>
+                                    <xsl:call-template name="formatDate">
+                                        <xsl:with-param name="yyyy-mm-dd" select="//tns:UVSMERTFLRequest/@ДатаСнят"/>
+                                    </xsl:call-template>
+                                </td>
+                                <th></th>
+                                <td></td>
                             </tr>
                         </tbody>
                     </table>
