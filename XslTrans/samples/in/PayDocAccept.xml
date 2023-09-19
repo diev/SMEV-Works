@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<QueryResult
+    xmlns="urn://x-artefacts-smev-gov-ru/services/service-adapter/types"
+    xmlns:ns2="urn://x-artefacts-smev-gov-ru/services/service-adapter/types/faults">
+
+    <smevMetadata>
+        <MessageId>4984cf83-0078-11ee-9f70-001a4a166087</MessageId>
+        <TransactionCode>497f2a1d-0078-11ee-9de2-fa163e1007b9|00000000000000000000|lVB9CYuzCLjIXCFOaq+WZmMmAwVvUVR2IFwGG1XpCnjeZQvPC9i6KOxjF9879eifFCYsfPRx0ARNIMS09mNGNeAKsXgOz+Pg/I3Zxz7oLEq0qsJhOtW61li4hTXDq89T/sdzHFEU9go8suBrCyfclAJJFtCPrcSVcQ0komM0ZrZTyToon45udoBczyGDIGnS/GfJ+R+Dz/9DAjn/hjUv2gUEVhGAk9eu7lFQAtuECs5U4cNz8vtkoEg7ldvIC4Gkpe/WYSqgi53MbGvypmYpsfJx5LCvyYeInkE2u1lWB+HczVMBybdhC1CWj4xzNKA3PMuE4T04LuPggfSwbOUo+g==</TransactionCode>
+        <Sender>emuOLD</Sender>
+        <Recipient>123456</Recipient>
+        <SendingDate>2023-06-01T15:31:52.523+03:00</SendingDate>
+    </smevMetadata>
+
+    <Message xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="RequestMessageType">
+        <RequestMetadata>
+            <clientId>c4dfe514-fd71-489c-9d15-5eeb54fd4bc5</clientId>
+            <linkedGroupIdentity>
+                <refClientId>c4dfe514-fd71-489c-9d15-5eeb54fd4bc5</refClientId>
+                <refGroupId>497f2a1d-0078-11ee-9de2-fa163e1007b9</refGroupId>
+            </linkedGroupIdentity>
+            <testMessage>false</testMessage>
+            <TransactionCode>497f2a1d-0078-11ee-9de2-fa163e1007b9|00000000000000000000|lVB9CYuzCLjIXCFOaq+WZmMmAwVvUVR2IFwGG1XpCnjeZQvPC9i6KOxjF9879eifFCYsfPRx0ARNIMS09mNGNeAKsXgOz+Pg/I3Zxz7oLEq0qsJhOtW61li4hTXDq89T/sdzHFEU9go8suBrCyfclAJJFtCPrcSVcQ0komM0ZrZTyToon45udoBczyGDIGnS/GfJ+R+Dz/9DAjn/hjUv2gUEVhGAk9eu7lFQAtuECs5U4cNz8vtkoEg7ldvIC4Gkpe/WYSqgi53MbGvypmYpsfJx5LCvyYeInkE2u1lWB+HczVMBybdhC1CWj4xzNKA3PMuE4T04LuPggfSwbOUo+g==</TransactionCode>
+        </RequestMetadata>
+
+        <RequestContent>
+            <content>
+                <MessagePrimaryContent>
+
+                    <npa:PayDocAcceptRequest
+                        xmlns:npa="urn://x-artefacts-rec-ru/PayService/PayDocAccept/1.0.0"
+                        xmlns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.2"
+                        xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"
+                        xmlns:ns0="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.2"
+                        xmlns:ns1="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.2"
+                        xmlns:ns2="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.2"
+                        xmlns:ns3="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/faults/1.2"
+                        xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+
+                        idRq="I_07d5a0d1-5183-4efc-86a8-93b4d341872c"
+                        timeStampRq="2022-05-17T09:30:47Z">
+
+                        <com:RoutingCode xmlns:com="http://x-artefacts-rec-ru/PayService/Common/1.0.0">123456</com:RoutingCode>
+
+                        <npa:PayDocData amount="1000" amountTax="500" amountToPay="1000" currencyCode="RUB" invoiceDate="2022-05-17" invoiceID="60077274285462022-0000001" purpose="Тестовый платеж" tax="20">
+                            <pd:Payee xmlns:pd="http://x-artefacts-rec-ru/PayService/PayDoc/1.0.0" inn="7704441808" payeeName="Тестовый получатель">
+                                <com:PayeeAccountInfo xmlns:com="http://x-artefacts-rec-ru/PayService/Common/1.0.0" personalAcc="40703840705658921366">
+                                    <com:Bank bik="044525068"/>
+                                </com:PayeeAccountInfo>
+                            </pd:Payee>
+                            <pd:PayerOrg xmlns:pd="http://x-artefacts-rec-ru/PayService/PayDoc/1.0.0" inn="7727428546" payerName="Тестовый плательщик"/>
+                        </npa:PayDocData>
+
+                        <npa:Accept amountAccept="1000">
+                            <npa:PayerAccountInfo personalAcc="40703840705658921366">
+                                <npa:Bank bik="044525068"/>
+                            </npa:PayerAccountInfo>
+                            <npa:DocumentBase date="2022-05-04" name="Тестовый документ" number="5896547852"/>
+                        </npa:Accept>
+                    </npa:PayDocAcceptRequest>
+
+                </MessagePrimaryContent>
+            </content>
+        </RequestContent>
+
+    </Message>
+</QueryResult>

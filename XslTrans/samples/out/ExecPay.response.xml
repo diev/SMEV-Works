@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<tns:ClientMessage xmlns:tns="urn://x-artefacts-smev-gov-ru/services/service-adapter/types" xmlns:ep="urn://x-artefacts-rec-ru/PayService/ExecPay/1.0.0">
+  <tns:itSystem>123456</tns:itSystem>
+  <tns:ResponseMessage>
+    <tns:ResponseMetadata>
+      <tns:clientId>c0321af4-3c43-4adc-8a43-0adfacae4161</tns:clientId>
+      <tns:replyToClientId>71897fdf-23cf-4fce-b29b-508c5dc909bb</tns:replyToClientId>
+    </tns:ResponseMetadata>
+    <tns:ResponseContent>
+      <tns:content>
+        <tns:MessagePrimaryContent>
+          <ep:ExecPayResponse idRs="R_7eef6ad0-b9aa-494a-be07-0c27f91157b9" idRq="I_65642e42-9bc8-4c2d-bcd9-9786528a7db9" timeStampRs="2022-05-17T09:30:47Z" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com="http://x-artefacts-rec-ru/PayService/Common/1.0.0">
+            <ep:ExecPayData paymentID="60077274285462022-0000001" receiptDate="2022-05-17" chargeOffDate="2022-05-17" amount="10000" currencyCode="RUB" purpose="Тестовый платеж">
+              <ep:Payee payeeName="Тестовый получатель" inn="7704441808">
+                <com:PayeeAccountInfo personalAcc="40802840442034415249">
+                  <com:Bank bik="044525068" />
+                </com:PayeeAccountInfo>
+              </ep:Payee>
+              <ep:Payer payerName="Тестовый плательщик" inn="7727428546">
+                <com:PayerAccountInfo personalAcc="40703840705658921366">
+                  <com:Bank bik="044525068" />
+                </com:PayerAccountInfo>
+              </ep:Payer>
+            </ep:ExecPayData>
+          </ep:ExecPayResponse>
+        </tns:MessagePrimaryContent>
+      </tns:content>
+    </tns:ResponseContent>
+  </tns:ResponseMessage>
+</tns:ClientMessage>

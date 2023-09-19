@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<tns:ClientMessage xmlns:tns="urn://x-artefacts-smev-gov-ru/services/service-adapter/types" xmlns:npa="urn://x-artefacts-rec-ru/PayService/PayDocAccept/1.0.0" xmlns:pd="http://x-artefacts-rec-ru/PayService/PayDoc/1.0.0" xmlns:com="http://x-artefacts-rec-ru/PayService/Common/1.0.0">
+  <tns:itSystem>123456</tns:itSystem>
+  <tns:ResponseMessage>
+    <tns:ResponseMetadata>
+      <tns:clientId>5e634c2d-b46b-45d2-b8e6-f19e7773188d</tns:clientId>
+      <tns:replyToClientId>c4dfe514-fd71-489c-9d15-5eeb54fd4bc5</tns:replyToClientId>
+    </tns:ResponseMetadata>
+    <tns:ResponseContent>
+      <tns:content>
+        <tns:MessagePrimaryContent>
+          <npa:PayDocAcceptResponse idRs="??:I_54a39db1-8753-5522-1739-bc94254ccdb4" idRq="I_07d5a0d1-5183-4efc-86a8-93b4d341872c" timeStampRs="??:2022-05-17T10:31:55Z">
+            <npa:InvoiceID>60077274285462022-0000001</npa:InvoiceID>
+            <npa:ResultCode>1</npa:ResultCode>
+          </npa:PayDocAcceptResponse>
+        </tns:MessagePrimaryContent>
+      </tns:content>
+    </tns:ResponseContent>
+  </tns:ResponseMessage>
+</tns:ClientMessage>

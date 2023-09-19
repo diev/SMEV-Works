@@ -1,0 +1,31 @@
+
+        ПРЕДОСТАВЛЕНИЕ ИНФОРМАЦИИ, НЕОБХОДИМОЙ ДЛЯ ПЕРЕВОДА
+        ДЕНЕЖНЫХ СРЕДСТВ, ИЛИ ИНФОРМАЦИИ О НАЧИСЛЕНИИ        
+
+        Вид сведений:  urn://x-artefacts-rec-ru/PayService/PayDocinfo
+
+        Message Id:    549b1914-0078-11ee-9f70-001a4a166087
+        Отправлено:    01.06.2023 15:32 +03:00
+
+        PayDocData
+
+        amount         1000
+        tax            20
+        amountTax      500
+        amountToPay    1000
+        currencyCode   RUB
+        invoiceDate    17.05.2022
+        invoiceID      60077274285462022-0000001
+        purpose        Тестовый платеж
+
+        Payer
+
+        inn            7727428546
+        payerName      Тестовый плательщик
+
+        Payee
+
+        inn            7704441808
+        payeeName      Тестовый получатель
+        personalAcc    40703840705658921366
+        bik            044525068

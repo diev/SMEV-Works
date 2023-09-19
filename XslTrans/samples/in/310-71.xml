@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<QueryResult
+    xmlns="urn://x-artefacts-smev-gov-ru/services/service-adapter/types"
+    xmlns:ns2="urn://x-artefacts-smev-gov-ru/services/service-adapter/types/faults">
+
+    <smevMetadata>
+        <MessageId>e1708141-0059-11ee-9f70-001a4a166087</MessageId>
+        <TransactionCode>e16d9ad9-0059-11ee-9de2-fa163e1007b9|00000000000000000000|Ld4yXjPEVr27PcnW3U7/Hk/vGyDP/SFFd/ucGtzOriJN8nNVVxinlbbkz9Iv+5dZUZA66S3v68I4ZQMRzL7bZjTL1S17U7o6IviIRfUWYiRdtnYjUMWV7Zl5L/ocOya1D7m9/fgn3N/MLLcoQtm0YRSIBcY+WCskX+o7E5QBJS51bcUP1OJG6hfQGeI6fcFRrUbMkJVwI7j1u4n7c3znUqOBUbHeLJFY6jEFMAgQnUoEQJy8KYBkq5D5W53aw2QYRjJ9iOSYEIk7nw+/9PK3rOBka23v0vuIhdYYzztSespCopcRlVt1ZxZUflOAXzDWhvjyfzMAhZF+TnKEtnI/Pw==</TransactionCode>
+        <Sender>emuOLD</Sender>
+        <Recipient>123456</Recipient>
+        <SendingDate>2023-06-01T11:54:13.047+03:00</SendingDate>
+    </smevMetadata>
+
+    <Message xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="RequestMessageType">
+        <RequestMetadata>
+            <clientId>331d4d13-a65e-4d8e-bd54-4a2a722803ad</clientId>
+            <linkedGroupIdentity>
+                <refClientId>331d4d13-a65e-4d8e-bd54-4a2a722803ad</refClientId>
+                <refGroupId>e16d9ad9-0059-11ee-9de2-fa163e1007b9</refGroupId>
+            </linkedGroupIdentity>
+            <testMessage>false</testMessage>
+            <TransactionCode>e16d9ad9-0059-11ee-9de2-fa163e1007b9|00000000000000000000|Ld4yXjPEVr27PcnW3U7/Hk/vGyDP/SFFd/ucGtzOriJN8nNVVxinlbbkz9Iv+5dZUZA66S3v68I4ZQMRzL7bZjTL1S17U7o6IviIRfUWYiRdtnYjUMWV7Zl5L/ocOya1D7m9/fgn3N/MLLcoQtm0YRSIBcY+WCskX+o7E5QBJS51bcUP1OJG6hfQGeI6fcFRrUbMkJVwI7j1u4n7c3znUqOBUbHeLJFY6jEFMAgQnUoEQJy8KYBkq5D5W53aw2QYRjJ9iOSYEIk7nw+/9PK3rOBka23v0vuIhdYYzztSespCopcRlVt1ZxZUflOAXzDWhvjyfzMAhZF+TnKEtnI/Pw==</TransactionCode>
+        </RequestMetadata>
+
+        <RequestContent>
+            <content>
+                <MessagePrimaryContent>
+
+                    <tns:NALFLPROCRequest
+                        xmlns:tns="urn://x-artefacts-fns-nalflproc/root/310-71/4.0.1"
+                        xmlns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.2"
+                        xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"
+                        xmlns:ns0="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.2"
+                        xmlns:ns1="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.2"
+                        xmlns:ns2="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.2"
+                        xmlns:ns3="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/faults/1.2"
+                        xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+
+                        ИдЗапрос="00000000-0000-0000-0000-000000000001"
+                        ИдЗапросПост="00000000-0000-0000-0000-000000000001"
+                        КодНО="0000"
+                        МнемонПост="123456"
+                        Период="2020">
+
+                        <tns:СведБанк ИНН="1000000000" КПП="100000000" НаимБанк="Тестовое наименование банка"/>
+                        <tns:СведУточн ВидЗапр="1" НомКорр="01" ПорядНом="1"/>
+                        <tns:СведУточн ВидЗапр="2" НомКорр="02" ПорядНом="2"/>
+                    </tns:NALFLPROCRequest>
+
+                </MessagePrimaryContent>
+            </content>
+        </RequestContent>
+
+    </Message>
+</QueryResult>

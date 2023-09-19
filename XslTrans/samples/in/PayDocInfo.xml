@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<QueryResult
+    xmlns="urn://x-artefacts-smev-gov-ru/services/service-adapter/types"
+    xmlns:ns2="urn://x-artefacts-smev-gov-ru/services/service-adapter/types/faults">
+
+    <smevMetadata>
+        <MessageId>549b1914-0078-11ee-9f70-001a4a166087</MessageId>
+        <TransactionCode>549880cb-0078-11ee-9883-fa163ee4b849|00000000000000000000|Ue+ASYOHSK7P3T6J50nVfYHy1mvr7Ox+7dqcUrgaguB9pBoJzZDdYhE/3vgO/klur2JFEYbPduXEC+zvt16QlBePzgD6AhDLlUojdGJx5AfwEWJr9GXbht1/oiHdg7X63yb5mb1X+g0awqkiwJA4H4RvNroReMW61BlDqf5k3nXGxGJeF7c0Fe9naHT9JxnNBF5JPfppsFaNknLmO32dgiaOAgy86akG3UqIMSzIfgFJ8vUmedkTdZI1LZhC0PYafkIUrQCZ1EG1uuowssfBuaW3vwyD4NAl1DG/MGxNbu0K+EO8VtUpNt5CMzZnjLZcGrz8qRpOw/9H21RJEqMe2A==</TransactionCode>
+        <Sender>emuOLD</Sender>
+        <Recipient>123456</Recipient>
+        <SendingDate>2023-06-01T15:32:11.131+03:00</SendingDate>
+    </smevMetadata>
+
+    <Message xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="RequestMessageType">
+        <RequestMetadata>
+            <clientId>28d46148-702f-4afd-bd15-7e69d6beb008</clientId>
+            <linkedGroupIdentity>
+                <refClientId>28d46148-702f-4afd-bd15-7e69d6beb008</refClientId>
+                <refGroupId>549880cb-0078-11ee-9883-fa163ee4b849</refGroupId>
+            </linkedGroupIdentity>
+            <testMessage>false</testMessage>
+            <TransactionCode>549880cb-0078-11ee-9883-fa163ee4b849|00000000000000000000|Ue+ASYOHSK7P3T6J50nVfYHy1mvr7Ox+7dqcUrgaguB9pBoJzZDdYhE/3vgO/klur2JFEYbPduXEC+zvt16QlBePzgD6AhDLlUojdGJx5AfwEWJr9GXbht1/oiHdg7X63yb5mb1X+g0awqkiwJA4H4RvNroReMW61BlDqf5k3nXGxGJeF7c0Fe9naHT9JxnNBF5JPfppsFaNknLmO32dgiaOAgy86akG3UqIMSzIfgFJ8vUmedkTdZI1LZhC0PYafkIUrQCZ1EG1uuowssfBuaW3vwyD4NAl1DG/MGxNbu0K+EO8VtUpNt5CMzZnjLZcGrz8qRpOw/9H21RJEqMe2A==</TransactionCode>
+        </RequestMetadata>
+
+        <RequestContent>
+            <content>
+                <MessagePrimaryContent>
+
+                    <npd:PayDocInfoRequest
+                        xmlns:npd="urn://x-artefacts-rec-ru/PayService/PayDocinfo/1.0.0"
+                        xmlns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.2"
+                        xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"
+                        xmlns:ns0="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.2"
+                        xmlns:ns1="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.2"
+                        xmlns:ns2="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.2"
+                        xmlns:ns3="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/faults/1.2"
+                        xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+
+                        idRq="G_a108e1f7-e0f0-42d2-8e80-b64a423efe4e"
+                        reasonSend="1"
+                        timeStampRq="2022-05-17T10:30:55Z">
+
+                        <com:RoutingCode xmlns:com="http://x-artefacts-rec-ru/PayService/Common/1.0.0">123456</com:RoutingCode>
+
+                        <npd:PayDocData amount="1000" amountTax="500" amountToPay="1000" currencyCode="RUB" invoiceDate="2022-05-17" invoiceID="60077274285462022-0000001" purpose="Тестовый платеж" tax="20">
+                            <pd:Payee xmlns:pd="http://x-artefacts-rec-ru/PayService/PayDoc/1.0.0" inn="7704441808" payeeName="Тестовый получатель">
+                                <com:PayeeAccountInfo xmlns:com="http://x-artefacts-rec-ru/PayService/Common/1.0.0" personalAcc="40703840705658921366">
+                                    <com:Bank bik="044525068"/>
+                                </com:PayeeAccountInfo>
+                            </pd:Payee>
+                            <pd:PayerOrg xmlns:pd="http://x-artefacts-rec-ru/PayService/PayDoc/1.0.0" inn="7727428546" payerName="Тестовый плательщик"/>
+                        </npd:PayDocData>
+                    </npd:PayDocInfoRequest>
+
+                </MessagePrimaryContent>
+            </content>
+        </RequestContent>
+
+    </Message>
+</QueryResult>

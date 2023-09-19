@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<QueryResult
+    xmlns="urn://x-artefacts-smev-gov-ru/services/service-adapter/types"
+    xmlns:ns2="urn://x-artefacts-smev-gov-ru/services/service-adapter/types/faults">
+
+    <smevMetadata>
+        <MessageId>3ae55f32-0078-11ee-9f70-001a4a166087</MessageId>
+        <TransactionCode>3ae2c6e6-0078-11ee-9883-fa163ee4b849|00000000000000000000|CYCRtlBMIlK8qUC/inVjhPwB+lA/Cl7EMK/YB2zikMm7VFj9O2fYBfu0isrFl8gYglfZhUJxZa269/fHSDJ0OzuAUmSmwewO1NuqeVxrOtKt9jHOUM55Dz5sx94ksNrGVEWaQSyxAkGXpePGaX71zpCdLTKr5MtgWBD0hlImd16fmkrQhTwMHrjxAjCWguvFS54nTtex/QjvuMtSg6UxwmIfelcB1e6QSGwyg1qta0oY7m30qfsZjtZ26wHMHFALQ/hmLIyIhoA/DoKquC6NXyk1mPQiuq9vVJUnTeH9QdaXxOojfP3Gnd3rIOU6A5aHRcTbmv6mioqVOYX5EMf//A==</TransactionCode>
+        <Sender>emuOLD</Sender>
+        <Recipient>123456</Recipient>
+        <SendingDate>2023-06-01T15:31:30.026+03:00</SendingDate>
+    </smevMetadata>
+
+    <Message xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="RequestMessageType">
+        <RequestMetadata>
+            <clientId>71897fdf-23cf-4fce-b29b-508c5dc909bb</clientId>
+            <linkedGroupIdentity>
+                <refClientId>71897fdf-23cf-4fce-b29b-508c5dc909bb</refClientId>
+                <refGroupId>3ae2c6e6-0078-11ee-9883-fa163ee4b849</refGroupId>
+            </linkedGroupIdentity>
+            <testMessage>false</testMessage>
+            <TransactionCode>3ae2c6e6-0078-11ee-9883-fa163ee4b849|00000000000000000000|CYCRtlBMIlK8qUC/inVjhPwB+lA/Cl7EMK/YB2zikMm7VFj9O2fYBfu0isrFl8gYglfZhUJxZa269/fHSDJ0OzuAUmSmwewO1NuqeVxrOtKt9jHOUM55Dz5sx94ksNrGVEWaQSyxAkGXpePGaX71zpCdLTKr5MtgWBD0hlImd16fmkrQhTwMHrjxAjCWguvFS54nTtex/QjvuMtSg6UxwmIfelcB1e6QSGwyg1qta0oY7m30qfsZjtZ26wHMHFALQ/hmLIyIhoA/DoKquC6NXyk1mPQiuq9vVJUnTeH9QdaXxOojfP3Gnd3rIOU6A5aHRcTbmv6mioqVOYX5EMf//A==</TransactionCode>
+        </RequestMetadata>
+
+        <RequestContent>
+            <content>
+                <MessagePrimaryContent>
+
+                    <ep:ExecPayRequest
+                        xmlns:ep="urn://x-artefacts-rec-ru/PayService/ExecPay/1.0.0"
+                        xmlns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.2"
+                        xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"
+                        xmlns:ns0="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.2"
+                        xmlns:ns1="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.2"
+                        xmlns:ns2="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.2"
+                        xmlns:ns3="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/faults/1.2"
+                        xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+
+                        idRq="I_65642e42-9bc8-4c2d-bcd9-9786528a7db9"
+                        timeStampRq="2022-05-17T09:30:47Z">
+
+                        <com:RoutingCode xmlns:com="http://x-artefacts-rec-ru/PayService/Common/1.0.0">123456</com:RoutingCode>
+
+                        <ep:ConfirmPaymentInfo accDocDate="2022-05-17" accDocNo="25" amount="10000" chargeOffDate="2022-05-17">
+                            <ep:Payer inn="7727428546" personalAcc="40703840705658921366"/>
+                        </ep:ConfirmPaymentInfo>
+                    </ep:ExecPayRequest>
+
+                </MessagePrimaryContent>
+            </content>
+        </RequestContent>
+
+    </Message>
+</QueryResult>

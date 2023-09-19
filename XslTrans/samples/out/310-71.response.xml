@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<tns:ClientMessage xmlns:tns="urn://x-artefacts-smev-gov-ru/services/service-adapter/types">
+  <tns:itSystem>123456</tns:itSystem>
+  <tns:ResponseMessage>
+    <tns:ResponseMetadata>
+      <tns:clientId>40d050b0-b65b-401a-9dc1-5dec63247320</tns:clientId>
+      <tns:replyToClientId>331d4d13-a65e-4d8e-bd54-4a2a722803ad</tns:replyToClientId>
+    </tns:ResponseMetadata>
+    <tns:ResponseContent>
+      <tns:content>
+        <tns:MessagePrimaryContent>
+          <tns:NALFLPROCResponse ИдЗапрос="00000000-0000-0000-0000-000000000001" КодОбр="10" xmlns:tns="urn://x-artefacts-fns-nalflproc/root/310-71/4.0.1" />
+        </tns:MessagePrimaryContent>
+      </tns:content>
+    </tns:ResponseContent>
+  </tns:ResponseMessage>
+</tns:ClientMessage>

@@ -3,11 +3,11 @@
 <!-- Редакция от 2023-05-31 -->
 
 <xsl:stylesheet version="1.0"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:tns="urn://x-artefacts-fns-uvsmertfl/root/313-19/4.0.1"
     xmlns:fnst="urn://x-artefacts-fns-uvsmertfl/types/313-19/4.0.1"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:x="urn://x-artefacts-smev-gov-ru/services/service-adapter/types"
-    exclude-result-prefixes="xsl tns fnst x">
+    exclude-result-prefixes="tns fnst xsl x">
 
     <xsl:output method="text" encoding="windows-1251"/>
 
@@ -44,8 +44,10 @@
         НАЛОГОВОМ ОРГАНЕ ФИЗИЧЕСКОГО ЛИЦА - ВЛАДЕЛЬЦА СЧЕТА
         НА ОСНОВАНИИ СВЕДЕНИЙ О СМЕРТИ
 
-        Message Id: <xsl:value-of select="//x:MessageId/text()"/>
-        Отправлено: <xsl:call-template name="formatDateTime">
+        Вид сведений:  313-19
+
+        Message Id:    <xsl:value-of select="//x:MessageId/text()"/>
+        Отправлено:    <xsl:call-template name="formatDateTime">
             <xsl:with-param name="dateTime" select="//x:SendingDate/text()"/>
         </xsl:call-template>
 

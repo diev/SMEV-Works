@@ -1,0 +1,19 @@
+
+        опеднярюбкемхе гюопняю мю онксвемхе хмтнплюжхх
+        на хяонкмемхх пюяонпъфемхъ н оепебнде демефмшу япедярб
+
+        бХД ЯБЕДЕМХИ:  urn://x-artefacts-rec-ru/PayService/ExecPay
+
+        Message Id:    3ae55f32-0078-11ee-9f70-001a4a166087
+        нРОПЮБКЕМН:    01.06.2023 15:31 +03:00
+
+        ConfirmPaymentInfo
+
+        amount         10000
+        accDocDate     17.05.2022
+        chargeOffDate  17.05.2022
+
+        Payer
+
+        inn            7727428546
+        personalAcc    40703840705658921366
