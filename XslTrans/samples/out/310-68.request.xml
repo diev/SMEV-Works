@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tns:ClientMessage xmlns:tns="urn://x-artefacts-smev-gov-ru/services/service-adapter/types">
+  <tns:itSystem>123456</tns:itSystem>
+  <tns:RequestMessage>
+    <tns:RequestMetadata>
+      <tns:clientId>9752fda9-7292-41ce-8191-3786b9950002</tns:clientId>
+      <tns:testMessage>true</tns:testMessage>
+    </tns:RequestMetadata>
+
+    <tns:RequestContent>
+      <tns:content>
+        <tns:MessagePrimaryContent>
+
+          <tns:FLPROCRequest xmlns:tns="urn://x-artefacts-fns-flproc/root/310-68/4.0.2" ИдЗапрос="00000000-0000-0000-0000-000000000001" Период="2020" КодНО="0000">
+              <tns:СведБанк НаимБанк="Тестовое наименование банка" ИНН="1000000000" КПП="100000000"/>
+
+              <tns:СведПроц ПорядНом="1" НомКорр="01" ПрКорр="1">
+                  <tns:СведФЛ Гражд="643" ДатаРожд="2001-01-01" ИННФЛ="100000000000" СумПроц="100000" СумПроцИнд="0">
+                      <tns:ФИО Фамилия="Иванов" Имя="Иван" Отчество="Иванович"/>
+                      <tns:УдЛичнФЛ КодВидДок="21" СерНомДок="0000 000001" ДатаВыд="2015-01-01"/>
+                  </tns:СведФЛ>
+              </tns:СведПроц>
+
+              <tns:СведПроц ПорядНом="2" НомКорр="02" ПрКорр="2">
+                  <tns:СведФЛ Гражд="643" ДатаРожд="2002-02-02" ИННФЛ="200000000000" СумПроц="200000" СумПроцИнд="200000">
+                      <tns:ФИО Фамилия="Петров" Имя="Петр" Отчество="Петрович"/>
+                      <tns:УдЛичнФЛ КодВидДок="21" СерНомДок="0000 000002" ДатаВыд="2016-02-02"/>
+                  </tns:СведФЛ>
+              </tns:СведПроц>
+
+              <tns:Подписант Должн="Тестовое наименование должности" Тлф="8(000)1234567" ДатаПодп="2021-01-01">
+                  <tns:ФИО Фамилия="Сидоров" Имя="Сидор" Отчество="Сидорович"/>
+              </tns:Подписант>
+          </tns:FLPROCRequest>
+
+        </tns:MessagePrimaryContent>
+      </tns:content>
+    </tns:RequestContent>
+
+  </tns:RequestMessage>
+</tns:ClientMessage>
