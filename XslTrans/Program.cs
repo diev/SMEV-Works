@@ -1,6 +1,6 @@
 ﻿#region License
 /*
-Copyright (c) 2023 Dmitrii Evdokimov
+Copyright (c) 2023-2024 Dmitrii Evdokimov
 Source https://github.com/diev/
 
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +18,9 @@ Source https://github.com/diev/
 #endregion
 
 using System;
+using System.Configuration;
 using System.IO;
+using System.IO.Compression;
 using System.Net;
 using System.Text;
 using System.Xml;
@@ -32,76 +34,80 @@ namespace XslTrans
     {
         static int Main(string[] args)
         {
-            if (args.Length < 2 || args.Length > 3)
-            {
-                Usage();
-                return 1;
-            }
-
-            string fXml = Path.GetFullPath(args[0]);
-            string fXsl = Path.GetFullPath(args[1]);
-
-            if (!File.Exists(fXml))
-            {
-                Console.WriteLine($"Source file '{fXml}' not found.");
-                return 2;
-            }
-
-            if (!File.Exists(fXsl))
-            {
-                Console.WriteLine($"Translation file '{fXsl}' not found.");
-                return 2;
-            }
-
             try
             {
-                // Create a parameter which fills client_id.
-                XsltArgumentList xslArgs = new XsltArgumentList();
-                string guid = Guid.NewGuid().ToString();
-                xslArgs.AddParam(nameof(guid), string.Empty, guid);
-
-                using (XmlReader src = XmlReader.Create(fXml))
+                if (args.Length == 0 || args[0].Equals("-?"))
                 {
-                    // Create the XslCompiledTransform object.
-                    XslCompiledTransform xslt = new XslCompiledTransform();
+                    Usage();
+                    return 1;
+                }
 
-                    // Create the XsltSettings object with script enabled.
-                    XsltSettings settings = new XsltSettings(false, true);
+                string xsltFile = ReadSetting("XsltFile");
+                string outPath = ReadSetting("OutPath");
+                
+                bool batch = !string.IsNullOrEmpty(xsltFile);
 
-                    // Create a resolver and set the default credentials to use.
-                    XmlUrlResolver resolver = new XmlUrlResolver
+                if (batch)
+                {
+                    if (!File.Exists(xsltFile))
                     {
-                        Credentials = CredentialCache.DefaultCredentials
-                    };
-
-                    // Load the style sheet.
-                    xslt.Load(fXsl, settings, resolver);
-
-                    // Create the output file name.
-                    string ext = GetExtension(xslt.OutputSettings.OutputMethod);
-                    string fOut = args.Length == 3
-                        ? GetResultName(args[2], fXml, ext, guid)
-                        : Path.ChangeExtension(fXml, ext);
-
-                    // Create the output XmlSettings.
-                    XmlWriterSettings writerSettings = xslt.OutputSettings.Clone();
-                    writerSettings.IndentChars = "  ";
-                    //writerSettings.Indent = true; //use it in XSLT
-
-                    if (xslt.OutputSettings.Encoding == Encoding.UTF8)
+                        Console.WriteLine($"Translation file '{xsltFile}' (see config) not found.");
+                        return 2;
+                    }
+                }
+                else // !batch
+                {
+                    if (args.Length > 0)
                     {
-                        // Remove the BOM!
-                        writerSettings.Encoding = new UTF8Encoding(false);
+                        string xmlFile = Path.GetFullPath(args[0]);
+
+                        if (!File.Exists(xmlFile))
+                        {
+                            Console.WriteLine($"Source file '{xmlFile}' not found.");
+                            return 2;
+                        }
                     }
 
-                    // Execute the transform and output the results to a file.
-                    using (XmlWriter result = XmlWriter.Create(fOut, writerSettings))
+                    if (args.Length > 1)
                     {
-                        xslt.Transform(src, xslArgs, result, resolver);
-                        result.Close();
+                        xsltFile = Path.GetFullPath(args[1]);
+
+                        if (!File.Exists(xsltFile))
+                        {
+                            Console.WriteLine($"Translation file '{xsltFile}' not found.");
+                            return 2;
+                        }
                     }
 
-                    Console.WriteLine($"Done to '{fOut}'.");
+                    if (args.Length > 2)
+                    {
+                        outPath = args[2];
+                    }
+
+                    if (args.Length > 3)
+                    {
+                        Usage();
+                        return 1;
+                    }
+                }
+
+                var xslt = GetXslCompiled(xsltFile);
+
+                if (string.IsNullOrEmpty(outPath))
+                {
+                    outPath = @".\";
+                }
+
+                if (batch)
+                {
+                    foreach (string file in args)
+                    {
+                        Worker(file, xslt, outPath);
+                    }
+                }
+                else
+                {
+                    Worker(args[0], xslt, outPath);
                 }
 
                 return 0;
@@ -109,40 +115,163 @@ namespace XslTrans
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine(ex.InnerException.Message);
+                }
+
                 return 3;
             }
         }
 
-        private static string GetResultName(string arg, string fXml, string ext, string guid)
+        private static XslCompiledTransform GetXslCompiled(string path)
+        {
+            // Create the XslCompiledTransform object.
+            XslCompiledTransform xslt = new XslCompiledTransform();
+
+            // Create the XsltSettings object with script enabled.
+            XsltSettings xsltSettings = new XsltSettings(false, true);
+
+            // Create a resolver and set the default credentials to use.
+            XmlUrlResolver xmlResolver = new XmlUrlResolver
+            {
+                Credentials = CredentialCache.DefaultCredentials
+            };
+
+            // Load the style sheet.
+            xslt.Load(path, xsltSettings, xmlResolver);
+
+            return xslt;
+        }
+
+        private static void Worker(string path, XslCompiledTransform xslt, string outPath)
+        {
+            if (path.Contains("*") || path.Contains("?"))
+            {
+                string dir = ".";
+                string mask = path;
+
+                if (path.Contains(@"\") || path.Contains("/"))
+                {
+                    int i = path.LastIndexOfAny(new char[] { '\\', '/' });
+                    dir = path.Substring(0, i);
+                    mask = path.Substring(i + 1);
+
+                    if (dir == "")
+                    {
+                        dir = ".";
+                    }
+                }
+
+                foreach (string file in Directory.EnumerateFiles(dir, mask, SearchOption.TopDirectoryOnly))
+                {
+                    Worker(file, xslt, outPath);
+                }
+
+                return;
+            }
+
+            if (path.EndsWith(".zip", StringComparison.OrdinalIgnoreCase))
+            {
+                string tempDir = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+                ZipFile.ExtractToDirectory(path, tempDir);
+
+                foreach (string file in Directory.EnumerateFiles(tempDir, "*.xml", SearchOption.AllDirectories))
+                {
+                    Worker(file, xslt, outPath);
+                }
+
+                Directory.Delete(tempDir, true);
+                return;
+            }
+
+            // Create a parameter which fills client_id.
+            XsltArgumentList xsltArgs = new XsltArgumentList();
+            string guid = Guid.NewGuid().ToString();
+            xsltArgs.AddParam(nameof(guid), string.Empty, guid);
+
+            // Create the output file name.
+            string ext = GetExtension(xslt.OutputSettings.OutputMethod);
+            string output = string.IsNullOrEmpty(outPath)
+                ? Path.ChangeExtension(path, ext)
+                : GetResultName(outPath, path, ext, guid);
+
+            // Create the output XmlSettings.
+            XmlWriterSettings writerSettings = xslt.OutputSettings.Clone();
+            writerSettings.IndentChars = "  ";
+            //writerSettings.Indent = true; //use it in XSLT
+
+            if (xslt.OutputSettings.Encoding == Encoding.UTF8)
+            {
+                // Remove the BOM!
+                writerSettings.Encoding = new UTF8Encoding(false);
+            }
+
+            // Create a resolver and set the default credentials to use.
+            XmlUrlResolver xmlResolver = new XmlUrlResolver
+            {
+                Credentials = CredentialCache.DefaultCredentials
+            };
+
+            using (XmlReader src = XmlReader.Create(path))
+            {
+                // Execute the transform and output the results to a file.
+                using (XmlWriter result = XmlWriter.Create(output, writerSettings))
+                {
+                    xslt.Transform(src, xsltArgs, result, xmlResolver);
+                    result.Close();
+                }
+
+                Console.WriteLine($"Done to '{output}'.");
+            }
+        }
+
+        private static string ReadSetting(string key)
+        {
+            var appSettings = ConfigurationManager.AppSettings;
+            return appSettings[key] ?? "Not Found";
+        }
+
+        private static string GetResultName(string arg, string xmlFile, string ext, string guid)
         {
             string result = Path.GetFullPath(arg);
+            string name = Path.GetFileName(xmlFile);
+
+            // dir
 
             if (Directory.Exists(result))
             {
-                string fileName = Path.GetFileName(fXml);
-                return Path.Combine(result, Path.ChangeExtension(fileName, ext));
+                return Path.Combine(result, Path.ChangeExtension(name, ext));
             }
 
-            if (result[result.Length - 1] == Path.DirectorySeparatorChar)
+            var sep = result[result.Length - 1];
+
+            if (sep == Path.DirectorySeparatorChar || sep == Path.AltDirectorySeparatorChar)
             {
                 Directory.CreateDirectory(result);
-                string fileName = Path.GetFileName(fXml);
-                return Path.Combine(result, Path.ChangeExtension(fileName, ext));
+                return Path.Combine(result, Path.ChangeExtension(name, ext));
             }
 
-            string path = Path.GetDirectoryName(result);
-            string name = Path.GetFileNameWithoutExtension(result);
+            // file
 
-            if (name.Equals("guid", StringComparison.OrdinalIgnoreCase))
+            var fi = new FileInfo(result);
+            var di = fi.Directory;
+            
+            if (fi.Name.Equals("guid", StringComparison.OrdinalIgnoreCase))
             {
-                result = Path.Combine(path, guid + Path.GetExtension(result));
+                result = Path.Combine(di.FullName, guid + fi.Extension);
             }
-            else if (name.Equals("{guid}", StringComparison.OrdinalIgnoreCase))
+            else if (fi.Name.Equals("{guid}", StringComparison.OrdinalIgnoreCase))
             {
-                result = Path.Combine(path, '{' + guid + '}' + Path.GetExtension(result));
+                result = Path.Combine(di.FullName, '{' + guid + '}' + fi.Extension);
             }
 
-            Directory.CreateDirectory(path);
+            if (!di.Exists)
+            {
+                di.Create();
+            }
+
             return result;
         }
 
@@ -167,7 +296,7 @@ namespace XslTrans
         private static void Usage()
         {
             string help = @"
-Usage on 'xsl:output method' in XSLT:
+Usage 1 on 'xsl:output method' in XSLT:
 
  - 'xml' : XslTrans Request.xml Xml.xslt [Dir|Request.response.xml]
  - 'xml' : XslTrans Request.xml Xml.xslt [Dir|guid.xml]
@@ -176,8 +305,19 @@ Usage on 'xsl:output method' in XSLT:
  - 'text': XslTrans Request.xml Txt.xslt [Dir|Request.txt]
 
 If 'Dir', this must exist or use 'Dir\' to create this.
-If 'guid.xml, this will substituted by Guid of 'client_id'.
-If '{guid}.xml, this will substituted by {Guid} of 'client_id'.";
+If 'guid.xml'/'{guid}.xml', this will be replaced by a generated guid.
+
+(This guid is autogenerated to use as an unique xsl:param.)
+
+Usage 2 in batch mode (if 'XsltFile' is set in config):
+ - XsltFile : Path to a constant XSLT file
+ - OutPath  : Same as an optional 'Dir' above
+
+XslTrans File.xml [, ...]
+XslTrans Mask?*.xml [, ...]
+XslTrans in\X*.zip [, ...]
+
+(You can drag-n-drop some files to process them all.)";
 
             Console.WriteLine(App.Version);
             Console.WriteLine(App.Description);

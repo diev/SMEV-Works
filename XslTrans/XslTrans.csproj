@@ -49,7 +49,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -72,12 +74,31 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="samples\in\310-71.xml" />
+    <Content Include="samples\in\313-19.xml" />
+    <Content Include="samples\in\ExecPay.xml" />
+    <Content Include="samples\in\PayDocAccept.xml" />
+    <Content Include="samples\in\PayDocInfo.xml" />
     <Content Include="samples\in\SampleRequest.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="samples\out\310-68.request.xml" />
+    <Content Include="samples\out\310-71.response.xml" />
+    <Content Include="samples\out\313-19.response.xml" />
+    <Content Include="samples\out\ExecPay.response.xml" />
+    <Content Include="samples\out\PayDocAccept.response.xml" />
+    <Content Include="samples\out\PayDocInfo.response.xml" />
     <Content Include="samples\out\SampleRequest.response.xml" />
+    <Content Include="samples\save\310-71.txt" />
+    <Content Include="samples\save\313-19.html" />
+    <Content Include="samples\save\313-19.txt" />
+    <Content Include="samples\save\ExecPay.txt" />
+    <Content Include="samples\save\PayDocAccept.txt" />
+    <Content Include="samples\save\PayDocInfo.txt" />
     <Content Include="samples\save\SampleRequest.html" />
     <Content Include="samples\save\SampleRequest.txt" />
+    <Content Include="XSLT\310-71t.xslt" />
+    <Content Include="XSLT\310-71x.xslt" />
     <Content Include="XSLT\313-19.xslt">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -86,6 +107,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="XSLT\313-19h.xslt" />
     <Content Include="XSLT\313-19p.xslt">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -93,6 +115,14 @@
     <Content Include="XSLT\313-19t.xslt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="XSLT\313-19x.xslt" />
+    <Content Include="XSLT\ExecPay-t.xslt" />
+    <Content Include="XSLT\ExecPay-x.xslt" />
+    <Content Include="XSLT\GUTDF30.xslt" />
+    <Content Include="XSLT\PayDocAccept-t.xslt" />
+    <Content Include="XSLT\PayDocAccept-x.xslt" />
+    <Content Include="XSLT\PayDocInfo-t.xslt" />
+    <Content Include="XSLT\PayDocInfo-x.xslt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
