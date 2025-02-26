@@ -223,7 +223,7 @@ namespace XslTrans
                     result.Close();
                 }
 
-                Console.WriteLine($"Done to '{output}'.");
+                Console.WriteLine($"Done to '{output}' ok.");
             }
         }
 
