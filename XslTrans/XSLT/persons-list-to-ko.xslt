@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!-- Реестр контролируемых лиц от MNSV188 -->
-<!-- Редакция от 2025-02-26 -->
+<!-- Реестр контролируемых лиц от MNSV03 -->
+<!-- Редакция от 2025-05-14 -->
 
 <xsl:transform version="1.0"
   xmlns:tns="urn://x-artefacts-rkl/persons-list-to-ko/1.0.0"

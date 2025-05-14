@@ -1,5 +1,5 @@
 @echo off
-rem Edition 2024-08-21
+rem Edition 2025-05-14
 
 rem echo %date%
 rem 31.05.2023
@@ -30,6 +30,12 @@ rem ----------------------------------------------
 :switch
 echo %1
 
+find "MNSV03" %1>nul
+if %errorlevel%==0 goto persons-list-to-ko
+
+find "MNSV188" %1>nul
+if %errorlevel%==0 goto persons-list-to-ko
+
 find ":NALFLPROCRequest" %1>nul
 if %errorlevel%==0 goto 310-71
 
@@ -45,6 +51,29 @@ find "ErrorMessage" %1>nul
 if %errorlevel%==0 goto error
 
 goto unknown
+
+rem ----------------------------------------------
+:persons-list-to-ko
+rem Set path to Archive and a new name
+set a=%arc%\%tag%-persons-list-to-ko-
+
+rem Put the source file to Archive
+copy %1 %a%%~nx1
+rem Delete if success
+if exist %a%%~nx1 del %1
+
+rem Put result files in Archive
+rem Make a response file for sending back
+XslTrans\XslTrans %a%%~nx1 XslTrans\XSLT\persons-list-to-ko.xslt %a%%~n1.reply.xml
+rem Make a printable report for subscribers
+rem XslTrans\XslTrans %a%%~nx1 XslTrans\XSLT\persons-list-to-ko-t.xslt %a%%~n1.txt
+
+rem Do actions with result files from Archive
+rem Put the response file to send
+copy %a%%~n1.reply.xml %out%
+rem Send the printable report to subscribers
+mailer - "New SMEV:persons-list-to-ko" SUCCEEDED
+goto :eof
 
 rem ----------------------------------------------
 :310-71
